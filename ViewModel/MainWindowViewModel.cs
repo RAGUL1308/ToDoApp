@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using ToDoApp.Model;
 using ToDoApp.MVVM;
 
@@ -23,7 +24,8 @@ namespace ToDoApp.ViewModel
 
         private void AddItem()
         {
-            Todos.Add(new Todo { Title="DefaultTask", Description="Defalut Description"});
+           
+            Todos.Add(new Todo { Title="DefaultTask", Description="Defalut Description",IsCompleted=false});
         }
 
         private Todo _selectedItem;
