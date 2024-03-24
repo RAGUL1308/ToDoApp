@@ -26,7 +26,8 @@
                         Width="80" 
                         Height="20"
                         Margin="10"
-                        Command="{Binding AddToDoCommand}"
+                       
+                        Click="Button_Click"
                         />
             </StackPanel>
         </StackPanel>

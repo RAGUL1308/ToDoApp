@@ -12,7 +12,7 @@ namespace ToDoApp.MVVM
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-
+        public ObservableCollection<Todo> Todos { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

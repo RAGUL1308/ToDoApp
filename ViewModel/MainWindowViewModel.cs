@@ -15,16 +15,24 @@ namespace ToDoApp.ViewModel
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        public ObservableCollection<Todo> Todos { get; set; }
+        /*public ObservableCollection<Todo> Todos { get; set; }*/
 
         public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteItem(),canexecute=> SelectedItem!=null);
+
+      
+
+       
 
         public ICommand ShowWindowCommand { get; set; }
 
 
         private void DeleteItem()
         {
+           
+            TodoManager.DeleteTodo(SelectedItem);
             Todos.Remove(SelectedItem);
+        
+
         }
 
         private Todo _selectedItem;
@@ -39,12 +47,18 @@ namespace ToDoApp.ViewModel
             }
         }
 
+       
+
         public MainWindowViewModel()
         {
             Todos = TodoManager.GetAll();
             ShowWindowCommand = new RelayCommand(ShowWindow, CanShowWindow);
 
+          
         }
+
+       
+
 
         private bool CanShowWindow(object arg)
         {
@@ -53,13 +67,18 @@ namespace ToDoApp.ViewModel
 
         private void ShowWindow(object obj)
         {
-            GetTaskDetails addwindow = new GetTaskDetails();
+            GetTaskDetails addwindow = new GetTaskDetails(this);
             var mainwindow = obj as Window;
             addwindow.Owner = mainwindow;
             addwindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            addwindow.Show();
+            /* addwindow.Show();*/
+            bool? dialogResult = addwindow.ShowDialog();
 
-
+            if (dialogResult == true)
+            {
+                Todos = TodoManager.GetAll();
+               
+            }
         }
     }
 }

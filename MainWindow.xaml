@@ -12,6 +12,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+           
             <Button Content="Add" Width="75" Height="30" Margin="0,0,5,0"
                     CommandParameter="{x:Reference mainwindow}"
                     Command="{Binding ShowWindowCommand}"/>

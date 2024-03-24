@@ -12,13 +12,15 @@ namespace ToDoApp.ViewModel
    public class GetDetailsViewModel : BaseViewModel
     {
 
-        public RelayCommand AddToDoCommand => new RelayCommand (execute => AddTodo(),canexecute=> {return true;} );
+        public RelayCommand AddToDoCommand => new RelayCommand(execute => AddTodo(), canexecute => { return true; });
 
         private void AddTodo()
         {
             TodoManager.AddTodo(new Todo { Title = Title, Description = Description, IsCompleted = false });
+            
+
         }
-        
+
 
         private string _title;
         private string _description;
