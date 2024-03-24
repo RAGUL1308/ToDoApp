@@ -1,0 +1,34 @@
+﻿<Window x:Class="ToDoApp.View.GetTaskDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoApp.View"
+        mc:Ignorable="d"
+        Title="GetTaskDetails" Height="200" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Title" Margin="5,10,5,0"/>
+                <TextBox Width="200" Margin="35,10,0,0" 
+                         Text="{Binding Title}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Description" 
+                       Margin="5,10,5,0"/>
+                <TextBox Width="200" 
+                         Height="70"  
+                         Margin="0,10,0,0"
+                         Text="{Binding Description}"/>
+            </StackPanel>
+            <StackPanel>
+                <Button Content="Submit" 
+                        Width="80" 
+                        Height="20"
+                        Margin="10"
+                        Command="{Binding AddToDoCommand}"
+                        />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

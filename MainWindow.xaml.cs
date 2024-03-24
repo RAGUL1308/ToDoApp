@@ -9,8 +9,8 @@ namespace ToDoApp
         public MainWindow()
         {
             InitializeComponent();
-            MainWindowViewModel vm = new MainWindowViewModel();
-            DataContext = vm;
+            MainWindowViewModel mainViewModel = new MainWindowViewModel();
+            this.DataContext = mainViewModel;
         }
     }
 }

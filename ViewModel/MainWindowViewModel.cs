@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using ToDoApp.Model;
 using ToDoApp.MVVM;
+using ToDoApp.View;
 
 namespace ToDoApp.ViewModel
 {
@@ -14,18 +17,14 @@ namespace ToDoApp.ViewModel
     {
         public ObservableCollection<Todo> Todos { get; set; }
 
-        public RelayCommand AddCommand => new RelayCommand(execute => AddItem(), canexecute => { return true; });
         public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteItem(),canexecute=> SelectedItem!=null);
+
+        public ICommand ShowWindowCommand { get; set; }
+
 
         private void DeleteItem()
         {
             Todos.Remove(SelectedItem);
-        }
-
-        private void AddItem()
-        {
-           
-            Todos.Add(new Todo { Title="DefaultTask", Description="Defalut Description",IsCompleted=false});
         }
 
         private Todo _selectedItem;
@@ -42,9 +41,25 @@ namespace ToDoApp.ViewModel
 
         public MainWindowViewModel()
         {
-            Todos = new ObservableCollection<Todo>();
-          /*  Todos.Add(new Todo { Title = "XXX", Description = "YYYYY" });
-            Todos.Add(new Todo { Title = "ZZZ", Description ="wfasvafsvdfv" });*/
+            Todos = TodoManager.GetAll();
+            ShowWindowCommand = new RelayCommand(ShowWindow, CanShowWindow);
+
+        }
+
+        private bool CanShowWindow(object arg)
+        {
+            return true;
+        }
+
+        private void ShowWindow(object obj)
+        {
+            GetTaskDetails addwindow = new GetTaskDetails();
+            var mainwindow = obj as Window;
+            addwindow.Owner = mainwindow;
+            addwindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            addwindow.Show();
+
+
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Application" Name="mainwindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -13,7 +13,8 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Add" Width="75" Height="30" Margin="0,0,5,0"
-                    Command="{Binding AddCommand}"/>
+                    CommandParameter="{x:Reference mainwindow}"
+                    Command="{Binding ShowWindowCommand}"/>
             <Button Content="Delete" Width="75" Height="30" Margin="0,0,5,0"
                     Command="{Binding DeleteCommand}"/>
         </StackPanel>
